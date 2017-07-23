@@ -11,6 +11,10 @@ img {
   visibility: visible;
 }
 
+.iguales {
+  background: url(../assets/Images/iguales.png) no-repeat;
+}
+
 table, td {
   border: 1px solid black;
   border-collapse: collapse;

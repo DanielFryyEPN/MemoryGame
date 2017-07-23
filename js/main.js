@@ -6,9 +6,8 @@ for(let i = 1; i <= 8; i++) {
 let try1 = '';
 let try2 = '';
 let contador = 0;
-let iguales = false;
 let hola = function () {
-  if(contador < 2 && $(this).children('img').hasClass('hide') === true) {
+  if(contador < 2 && $(this).children('img').hasClass('show') === false) {
     $(this).children('img').addClass('show');
     contador++;
     if (contador === 1) {
@@ -16,17 +15,11 @@ let hola = function () {
     } else {
       try2 = $(this).children('img').attr('src');
       if (try1 === try2) {
-        let id = $(this).children('img').attr('id');
-        
-        $('#' + id).a
-        console.log('html =>', id);
-        $('td').children('img').attr('src', try1);
-        console.log('try1:', try1, 'try2:', try2);
-        iguales = true;
-        console.log(iguales);
+        $('td').children("img[src='" + try2 + "']").addClass('iguales');
       } else {
-        iguales = false;
-        console.log(iguales);
+        setTimeout(function() {
+          $('img').not('.iguales').removeClass('show');
+        }, 1000);
       }
       contador = 0;
     }
@@ -42,6 +35,7 @@ for(let k = 1; k <= 16; k++){
   }
 }
 $(document).ready(function(){
+  $('img').addClass('hide');
   for (let i = 0; i < 16; i++) {
     $('#img' + index[i]).attr('src', images[i]);
   }
