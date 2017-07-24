@@ -11,7 +11,8 @@ let contador = 0;
 
 function play () {
   if(contador < 2 && $(this).children('img').hasClass('show') === false) {
-    $(this).children('img').addClass('show');
+    //$(this).children('img').css({'border-radius': '10%', 'transform': 'rotateY(360deg)'});
+    $(this).children('img').addClass('show').css('transform', 'rotateY(360deg)');
     contador++;
     if (contador === 1) {
       try1 = $(this).children('img').attr('src');
@@ -20,15 +21,16 @@ function play () {
       if (try1 === try2) {
         setTimeout(function() {
           $('td').children("img[src='" + try2 + "']").attr('src', 'assets/Images/iguales.png').removeClass('hide');
-        }, 1000);
+        }, 1200);
       } else {
         setTimeout(function() {
-          $('img').not('src', 'assets/Images/iguales.png').removeClass('show');
-        }, 1000);
+          $('img').not('src', 'assets/Images/iguales.png').removeClass('show').attr('style', '');
+        }, 1200);
       }
       contador = 0;
     }
   }
+  //console.log($("img[src='assets/Images/iguales.png']").length);
 }
 
 function startTimer () {
@@ -43,7 +45,8 @@ function startTimer () {
     } else {
       txtS = secs;
     }
-    if (secs === 59) {
+    $('#secs').text(txtS);
+    if (secs === 60) {
       secs = 0;
       mins++;
       if (mins<=9) {
@@ -53,7 +56,6 @@ function startTimer () {
       }
       $('#mins').text(txtM);
     }
-    $('#secs').text(txtS);
   }, 1000);
 }
 
@@ -74,5 +76,5 @@ $(document).ready(function(){
     $('#img' + index[i]).attr('src', images[i]);
   }
   $('td').click(play);
-  $('table').click(startTimer);
+  startTimer();
 });
